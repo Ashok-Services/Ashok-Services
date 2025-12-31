@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Repair Details | Ashok Services</title>
+<style>
+        :root {
+            --brand-blue: #007bff;
+            --dark-blue: #0056b3;
+            --bg-light: #fdfdfd;
+            --text-main: #333;
+            --logo-filter: invert(0);
+        }
+
+        [data-theme="dark"] {
+            --bg-light: #121212;
+            --text-main: #f1f1f1;
+            --logo-filter: invert(1);
+        }
+
+        html, body { 
+            margin: 0; padding: 0; min-height: 100%; 
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-light); color: var(--text-main);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* --- LIGHTWEIGHT ANIMATED PARTICLES --- */
+        .bg-particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1; 
+            overflow: hidden;
+            pointer-events: none;
+            background-color: transparent;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.7) 0%, rgba(0, 123, 255, 0) 70%);
+            filter: blur(40px);
+            animation: float-logic infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        .p1 { width: 200px; height: 200px; top: 15%; left: 5%; animation-duration: 8s; }
+        .p2 { width: 280px; height: 280px; bottom: 10%; right: 5%; animation-duration: 12s; animation-delay: -2s; }
+
+        @keyframes float-logic {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, 60px) scale(1.1); }
+        }
+
+        /* --- GLASS-BLUE HEADER --- */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.8) 0%, rgba(0, 86, 179, 0.6) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            color: white; padding: 40px 15px 60px 15px; text-align: center;
+            border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex; justify-content: center; align-items: center;
+            flex-shrink: 0; z-index: 100;
+        }
+
+        .brand-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            padding: 20px 35px; border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 { margin: 0; font-size: 24px; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- GLASS CONTAINER --- */
+        .container {
+            flex: 1; display: flex; flex-direction: column; align-items: center;
+            padding: 40px 20px; z-index: 10;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 30px; border-radius: 25px; width: 100%; max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+        }
+        [data-theme="dark"] .glass-card { background: rgba(30, 30, 30, 0.4); }
+
+        /* Inputs & Selectors */
+        #modelSearch, select {
+            width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.1); font-size: 16px;
+            background: rgba(255, 255, 255, 0.8); color: #333;
+            box-sizing: border-box; transition: 0.3s;
+        }
+        
+        [data-theme="dark"] #modelSearch, [data-theme="dark"] select {
+            background: rgba(255, 255, 255, 0.05); color: white; border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- DARK MODE DROPDOWN LIST FIX --- */
+        [data-theme="dark"] select option {
+            background-color: #1e1e1e; /* Dark background for the list */
+            color: white;              /* White text for the list */
+        }
+
+        #modelSearch:focus, select:focus { outline: none; border-color: var(--brand-blue); box-shadow: 0 0 10px rgba(0,123,255,0.2); }
+
+        /* Result Area */
+        .result-box {
+            margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1);
+            animation: fadeInUp 0.5s ease-out;
+        }
+        [data-theme="dark"] .result-box { border-top-color: rgba(255,255,255,0.1); }
+
+        .price-text { display: block; font-size: 32px; color: #2e7d32; font-weight: bold; margin: 10px 0; }
+        [data-theme="dark"] .price-text { color: #81c784; }
+
+        .whatsapp-btn { 
+            display: block; width: 100%; padding: 15px; 
+            background-color: #25D366; color: white; border: none; 
+            border-radius: 12px; font-size: 18px; font-weight: bold; 
+            cursor: pointer; transition: 0.3s;
+        }
+        .whatsapp-btn:hover { background-color: #128C7E; transform: scale(1.03); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        footer { 
+            background: #111; color: white; padding: 20px; text-align: center; 
+            font-size: 12px; z-index: 100;
+        }
+
+        .floating-contact { position: fixed; bottom: 85px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 3000; }
+        .float-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; font-size: 24px; transition: transform 0.2s; }
+        
+        #theme-toggle { position: fixed; top: 15px; right: 15px; z-index: 3000; width: 45px; height: 45px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; font-size: 20px; backdrop-filter: blur(5px); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-particles">
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+    </div>
+
+    <button onclick="toggleDarkMode()" id="theme-toggle">🌙</button>
+
+    <section class="hero">
+        <div class="brand-badge">
+            <h1 style="margin:0; font-size:22px; letter-spacing: 2px;">ASHOK SERVICES</h1>
+            
+            <nav style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                <a href="index.html" style="text-decoration: none; font-size: 11px; color: white; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;">HOME</a>
+                <a href="repair.html" style="text-decoration: none; font-size: 11px; color: white; padding: 6px 12px; background: rgba(255,255,255,0.3); border-radius: 20px; border: 1px solid rgba(255,255,255,0.4); font-weight: bold;">REPAIR</a>
+                <a href="parts.html" style="text-decoration: none; font-size: 11px; color: white; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;">PARTS</a>
+            </nav>
+            
+            <div style="height: 1px; width: 40px; background: white; margin: 12px auto; opacity: 0.3;"></div>
+            <p style="margin:0; font-size:11px; letter-spacing:1px; opacity:0.8; text-transform: uppercase;">Mobile Repairs</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="glass-card">
+            <input type="text" id="modelSearch" placeholder="🔍 Type model (e.g. 15 Pro)" onkeyup="filterModels()">
+
+            <select id="brandMenu" onchange="updateModels()">
+                <option value="">Select Device Brand</option>
+            </select>
+
+            <select id="modelMenu" disabled onchange="updateOptions()">
+                <option value="">Select Model Name</option>
+            </select>
+
+            <select id="optionMenu" disabled onchange="showFinalPrice()">
+                <option value="">Select Service / Part</option>
+            </select>
+
+            <div id="resultBox" class="result-box" style="display:none;">
+                <strong style="font-size: 14px; opacity: 0.7;">Estimated Rate:</strong>
+                <span id="finalPrice" class="price-text"></span>
+                <button onclick="sendWhatsApp()" class="whatsapp-btn">Enquire on WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-contact">
+        <a href="https://wa.me/919319477771" target="_blank" class="float-icon" style="background:#25D366;">💬</a>
+        <a href="tel:9319477771" class="float-icon" style="background:#007bff;">📞</a>
+    </div>
+
+    <footer>
+        Address: Shah Market, Agra, 282001<br>
+        Call: 9319477771 | अशोक सर्विसेज © 2026
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

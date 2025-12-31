@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ashok Services | Home</title>
+    <style>
+        :root {
+            --brand-blue: #007bff;
+            --dark-blue: #0056b3;
+            --bg-light: #fdfdfd;
+            --text-main: #333;
+            --logo-filter: invert(0);
+        }
+
+        [data-theme="dark"] {
+            --bg-light: #121212;
+            --text-main: #f1f1f1;
+            --logo-filter: invert(1);
+        }
+
+        html, body { 
+            margin: 0; padding: 0; height: 100%; overflow: hidden; 
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-light); 
+            color: var(--text-main);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* --- SMALLER & FASTER BLUE PARTICLES --- */
+        .bg-particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1; 
+            overflow: hidden;
+            pointer-events: none;
+            background-color: transparent;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.7) 0%, rgba(0, 123, 255, 0) 70%);
+            filter: blur(40px);
+            animation: float-logic infinite ease-in-out;
+            opacity: 0.8;
+        }
+
+        [data-theme="dark"] .particle {
+            background: radial-gradient(circle, rgba(0, 180, 255, 0.6) 0%, rgba(0, 180, 255, 0) 70%);
+        }
+
+        .p1 { width: 200px; height: 200px; top: 15%; left: 5%; animation-duration: 8s; }
+        .p2 { width: 280px; height: 280px; bottom: 10%; right: 5%; animation-duration: 12s; animation-delay: -2s; }
+        .p3 { width: 180px; height: 180px; top: 50%; left: 40%; animation-duration: 10s; animation-delay: -5s; }
+
+        @keyframes float-logic {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -40px) scale(1.2); }
+            50% { transform: translate(-30px, 80px) scale(0.8); }
+            75% { transform: translate(-70px, -20px) scale(1.1); }
+        }
+
+        /* --- GLASS-BLUE HEADER --- */
+        .hero {
+            /* Semi-transparent blue gradient */
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.8) 0%, rgba(0, 86, 179, 0.6) 100%);
+            
+            /* Glass blur effect */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            
+            color: white; 
+            padding: 40px 15px 60px 15px; 
+            text-align: center;
+            border-bottom-left-radius: 40px; 
+            border-bottom-right-radius: 40px;
+            
+            /* Subtle glass border */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .brand-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px 35px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .hero-separator {
+            height: 2px;
+            width: 50px;
+            background: white;
+            margin: 10px auto;
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 13px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: transparent;
+            z-index: 10;
+        }
+
+        .action-container {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 20px; width: 100%; padding-bottom: 30px;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.4); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            width: 100%; max-width: 320px;
+            padding: 20px; border-radius: 20px; text-decoration: none; color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 4px solid var(--brand-blue); 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, background 0.3s;
+        }
+
+        .action-card:hover { 
+            transform: scale(1.06); 
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 123, 255, 0.3);
+            border-bottom-color: var(--dark-blue);
+        }
+
+        [data-theme="dark"] .action-card { 
+            background: rgba(30, 30, 30, 0.4); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: white; 
+        }
+
+        [data-theme="dark"] .action-card:hover {
+            background: rgba(30, 30, 30, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-icon { font-size: 32px; }
+        .card-text h3 { font-size: 20px; margin: 0; color: var(--brand-blue); }
+        .card-text p { font-size: 12px; margin: 4px 0 0 0; color: #666; }
+        [data-theme="dark"] .card-text p { color: #bbb; }
+
+        .brand-section { text-align: center; width: 100%; z-index: 10;}
+        .brand-grid { display: flex; justify-content: center; gap: 25px; align-items: center; }
+        
+        .brand-logo { 
+            width: 35px; height: 35px; object-fit: contain; 
+            filter: var(--logo-filter); 
+            opacity: 0.8;
+            transition: 0.3s ease;
+        }
+        .brand-logo:hover { opacity: 1; transform: translateY(-5px); }
+
+        footer { 
+            background: #111; color: white; padding: 15px 10px; 
+            width: 100%; font-size: 11px; text-align: center;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .floating-contact { position: fixed; bottom: 85px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 3000; }
+        .float-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); text-decoration: none; font-size: 26px; transition: transform 0.2s; }
+        .float-icon:hover { transform: scale(1.15); }
+        
+        #theme-toggle { position: fixed; top: 15px; right: 15px; z-index: 3000; width: 45px; height: 45px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: white; cursor: pointer; font-size: 20px; backdrop-filter: blur(5px); }
+    </style>
+</head>
+<body>
+
+    <div class="bg-particles">
+        <div class="particle p1"></div>
+        <div class="particle p2"></div>
+        <div class="particle p3"></div>
+    </div>
+
+    <button onclick="toggleDarkMode()" id="theme-toggle">🌙</button>
+
+    <section class="hero">
+        <div class="brand-badge">
+            <h1>Ashok Services</h1>
+            <div class="hero-separator"></div>
+            <p>Mobile Repairs & Wholesale Parts</p>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <div class="action-container">
+            <a href="repair.html" class="action-card">
+                <span class="card-icon">🛠️</span>
+                <div class="card-text">
+                    <h3>Repair Services</h3>
+                    <p>Instant price estimates for all models.</p>
+                </div>
+            </a>
+
+            <a href="parts.html" class="action-card">
+                <span class="card-icon">📱</span>
+                <div class="card-text">
+                    <h3>Wholesale Parts</h3>
+                    <p>Premium displays and components.</p>
+                </div>
+            </a>
+        </div>
+
+<section class="brand-section"></section>
+    <div class="brand-grid">
+        <img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" alt="Apple">
+        
+        <img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/samsung.svg" alt="Samsung">
+        
+        <img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/xiaomi.svg" alt="Xiaomi">
+        
+        <img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/oneplus.svg" alt="OnePlus">
+    </div>
+</section>
+    </div>
+
+    <div class="floating-contact">
+        <a href="https://wa.me/919319477771" target="_blank" class="float-icon" style="background:#25D366;">💬</a>
+        <a href="tel:9319477771" class="float-icon" style="background:#007bff;">📞</a>
+    </div>
+
+    <footer>
+        Address: Shah Market, Agra, 282001 | <span style="color:#4caf50; font-weight: bold;">9319477771</span><br>
+        <div style="font-size: 9px; opacity: 0.5; margin-top: 4px;">Made by Apoorv © 2026</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
