@@ -137,7 +137,7 @@ function sendWhatsApp() {
     const optionMenu = document.getElementById("optionMenu");
     const optionText = optionMenu.options[optionMenu.selectedIndex].text;
     const price = document.getElementById("finalPrice").innerText;
-    const myNumber = "917453805555"; 
+    const myNumber = "917819049772"; 
     const message = `Hi Ashok Services, I am interested in:\n- Brand: ${brand}\n- Model: ${model}\n- Service: ${optionText}\n- Price: ${price}\n\nIs this available?`;
     const whatsappURL = `https://wa.me/${myNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');
@@ -228,3 +228,4 @@ function handleLeadSubmit(event) {
     console.log("Lead captured:", name);
     closePopup();
 }
+
